@@ -35,7 +35,7 @@ public class ControlPanelManipulator extends SubsystemBase {
     CPManipulatorMotor = new TalonSRX(RobotMap.mCPManipulator_ID);
 
     CPManipulatorMotor.configFactoryDefault();
-    CPManipulatorMotor.setNeutralMode(NeutrolMode.Brake);
+    CPManipulatorMotor.setNeutralMode(NeutralMode.Brake);
     CPManipulatorMotor.configContinuousCurrentLimit(30);
     CPManipulatorMotor.configPeakCurrentLimit(0);
     CPManipulatorMotor.enableCurrentLimit(true);
@@ -49,15 +49,19 @@ public class ControlPanelManipulator extends SubsystemBase {
   public void StopSpinControlPanel() {
     CPManipulatorMotor.set(ControlMode.PercentOutput, 0.0);
   }
+
 //Pneumatics Control
   public void PushUpManipulator() {
     CPManipulatorRetract.set(Constants.On);
     CPManipulatorExtend.set(Constants.Off);
+    Constants.cpmState = Constants.cpmStateRetracted;
   }
   public void PushDownManipulator() {
     CPManipulatorRetract.set(Constants.Off);
     CPManipulatorExtend.set(Constants.On);
+    Constants.cpmState = Constants.cpmStateExtended;
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

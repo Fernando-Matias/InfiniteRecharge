@@ -20,6 +20,9 @@ public class RobotMap {
     //Right Falcons
     public static final int mDriveRightA_ID = 4;
     public static final int mDriveRightB_ID = 6;
+
+    //Shooter Neo
+    public static final int mNeoShooter_ID = 9;
   
     //Controls
     public static final int mLeftStickPort = 0;
@@ -33,18 +36,25 @@ public class RobotMap {
     //Intake Motor ID
     public static final int mIntakeMotor_ID = 7;
 
+    //Control pannel manipulator 
+    public static final int mCPManipulator_ID = 8;
+
     //pnuematics
-    //Tray
-    public static final int mIntakeExtended_ID = 1;
-    public static final int mIntakeRetract_ID = 1;
+    //intake
+    public static final int pIntakeExtended_ID = 1;
+    public static final int pIntakeRetract_ID = 1;
 
     //Shifters
-    public static final int mShiftHigh_ID = 2;
-    public static final int mShiftLow_ID = 2;
+    public static final int pShiftHigh_ID = 2;
+    public static final int pShiftLow_ID = 2;
 
     //Popup 
-    public static final int mPopupUp_ID = 3;
-    public static final int mPopupDown_ID = 3;
+    public static final int pPopupUp_ID = 3;
+    public static final int pPopupDown_ID = 3;
+
+    //Control pannal manipulator
+    public static final int pCPManipulatorExtend_ID = 4;
+    public static final int PCPManipulatorRetract_ID = 4;
     
 
 

@@ -35,7 +35,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
     camMode = table.getEntry("camMode");
     ledMode = table.getEntry("ledMode");
 
-    pipeline.setValue(7);
+    pipeline.setValue(1);
     camMode.setValue(1);
 
   }

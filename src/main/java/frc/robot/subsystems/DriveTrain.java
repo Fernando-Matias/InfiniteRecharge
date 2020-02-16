@@ -59,8 +59,8 @@ public static DifferentialDrive mDrive;
   mDrive.setSafetyEnabled(false);
 
   //Setting Shifter varibales 
-  mShifter_Low = new Solenoid(RobotMap.PCM_A, RobotMap.mShiftLow_ID);
-  mShifter_High = new Solenoid(RobotMap.PCM_B, RobotMap.mShiftHigh_ID);
+  mShifter_Low = new Solenoid(RobotMap.PCM_A, RobotMap.pShiftLow_ID);
+  mShifter_High = new Solenoid(RobotMap.PCM_B, RobotMap.pShiftHigh_ID);
   }
 
   public void UpShift() {

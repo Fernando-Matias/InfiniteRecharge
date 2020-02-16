@@ -35,8 +35,8 @@ public class Popup extends SubsystemBase {
   public TalonSRX pulleyMotor;
   
   public Popup() {
-    popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.mPopupUp_ID);
-    popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.mPopupDown_ID);
+    popupUp = new Solenoid(RobotMap.PCM_A, RobotMap.pPopupUp_ID);
+    popupDown = new Solenoid(RobotMap.PCM_B, RobotMap.pPopupDown_ID);
 
     pulleyMotor.configFactoryDefault();
     pulleyMotor.setNeutralMode(NeutralMode.Brake);

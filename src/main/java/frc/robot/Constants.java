@@ -44,6 +44,12 @@ public final class Constants {
     public static final int popupStateDown = 1;
     public static int popupState = popupStateDown; 
 
+    //Control pannel manipulator 
+    public static final int cpmStateRetracted = 0;
+    public static final int cpmStateExtended = 1;
+    public static int cpmState = cpmStateExtended;
+
+
     
 
 

@@ -34,8 +34,8 @@ public class Intake extends SubsystemBase {
 
 
   public Intake() {
-    intakeExtend = new Solenoid(RobotMap.PCM_A, RobotMap.mIntakeExtended_ID);
-    intakeRetract = new Solenoid(RobotMap.PCM_A, RobotMap.mIntakeRetract_ID);
+    intakeExtend = new Solenoid(RobotMap.PCM_A, RobotMap.pIntakeExtended_ID);
+    intakeRetract = new Solenoid(RobotMap.PCM_A, RobotMap.pIntakeRetract_ID);
 
     intakeMotor = new TalonSRX(RobotMap.mIntakeMotor_ID);
 
