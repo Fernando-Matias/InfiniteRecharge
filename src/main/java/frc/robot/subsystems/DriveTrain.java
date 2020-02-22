@@ -39,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
   public static DefaultTalonFXDrive mDriveRightMaster, mDriveRightB;
   private static Solenoid mShifter_High, mShifter_Low;
 
-  private AHRS ahrs;
+  AHRS ahrs;
 
   public static DriveTrain getInstance(){
     return instance;
@@ -88,7 +88,7 @@ public static DifferentialDrive mDrive;
   PIDController PIDTurn = new PIDController(Constants.kTurn_P, Constants.kTurn_I, Constants.kTurn_D);
   PIDTurn.enableContinuousInput( -180.0 , 180.0);
   MathUtil.clamp(PIDTurn.calculate(mDriveLeftMaster.getSelectedSensorPosition()), -0.65, 0.65);
-  MathUtil.clamp(PIDTurn.calculate(mDriveLeftMaster.getSelectedSensorPosition()), -0.65, 0.65);
+  MathUtil.clamp(PIDTurn.calculate(mDriveRightMaster.getSelectedSensorPosition()), -0.65, 0.65);
   PIDTurn.setTolerance(Constants.kToleranceDegrees);
   }
 
