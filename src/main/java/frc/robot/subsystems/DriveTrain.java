@@ -7,9 +7,16 @@
 
 package frc.robot.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
+
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpiutil.math.MathUtil;
+import edu.wpi.first.wpilibj.SerialPort;
 
 import com.ctre.phoenix.motorcontrol.*;
 
@@ -32,6 +39,7 @@ public class DriveTrain extends SubsystemBase {
   public static DefaultTalonFXDrive mDriveRightMaster, mDriveRightB;
   private static Solenoid mShifter_High, mShifter_Low;
 
+  AHRS ahrs;
 
   public static DriveTrain getInstance(){
     return instance;
@@ -51,9 +59,20 @@ public static DifferentialDrive mDrive;
 
   //enabling follower mode for the other  two motors
   mDriveLeftB.set(ControlMode.Follower,RobotMap.mDriveLeftA_ID);
-
   mDriveRightB.set(ControlMode.Follower,RobotMap.mDriveRightA_ID);
 
+  //Left Encoder Values
+  mDriveLeftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.kTimeoutms);
+    mDriveLeftMaster.setSensorPhase(false);
+    mDriveLeftMaster.setInverted(false);
+    mDriveLeftB.setInverted(false);
+
+  //Right Encoder Values
+  mDriveRightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.kTimeoutms);
+    mDriveRightMaster.setSensorPhase(false);
+    mDriveRightMaster.setInverted(false);
+    mDriveRightB.setInverted(false);
+  
   //creating the differential drive and disabling the saftey
   mDrive = new DifferentialDrive(mDriveLeftMaster, mDriveRightMaster);
   mDrive.setSafetyEnabled(false);
@@ -61,7 +80,21 @@ public static DifferentialDrive mDrive;
   //Setting Shifter varibales 
   mShifter_Low = new Solenoid(RobotMap.PCM_A, RobotMap.pShiftLow_ID);
   mShifter_High = new Solenoid(RobotMap.PCM_B, RobotMap.pShiftHigh_ID);
+
+  //NavX AHRS
+  ahrs = new AHRS(SerialPort.Port.kMXP);
+
+  //PIDTurn
+  PIDController PIDTurn = new PIDController(Constants.kTurn_P, Constants.kTurn_I, Constants.kTurn_D);
+  PIDTurn.enableContinuousInput( -180.0 , 180.0);
+  MathUtil.clamp(PIDTurn.calculate(mDriveLeftMaster.getSelectedSensorPosition()), -0.65, 0.65);
+  MathUtil.clamp(PIDTurn.calculate(mDriveRightMaster.getSelectedSensorPosition()), -0.65, 0.65);
+  PIDTurn.setTolerance(Constants.kToleranceDegrees);
   }
+
+
+
+
 
   public void UpShift() {
   mShifter_High.set(Constants.On);
@@ -73,6 +106,14 @@ public static DifferentialDrive mDrive;
     mShifter_High.set(Constants.Off);
     mShifter_Low.set(Constants.On);
     Constants.currentGear = Constants.lowGear;
+  }
+  
+  public double GetLeftEncoderValue() {
+    return mDriveLeftMaster.getSelectedSensorPosition(0);
+  }
+   
+  public double GetRightEncoderValue() {
+    return mDriveRightMaster.getSelectedSensorPosition(0);
   }
   
   public void setCoast() {

@@ -49,8 +49,12 @@ public final class Constants {
     public static final int cpmStateExtended = 1;
     public static int cpmState = cpmStateExtended;
 
+    //Timeout for Encoders
+    public static final int kTimeoutms = 10;
 
-    
-
-
+    //PIDTurn
+    public static final double kTurn_P = 0.2;
+    public static final double kTurn_I = 0;
+    public static final double kTurn_D = 0;
+    public static final double kToleranceDegrees = 2.0;
 }
