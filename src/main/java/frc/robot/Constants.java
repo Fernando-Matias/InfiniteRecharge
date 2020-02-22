@@ -52,5 +52,9 @@ public final class Constants {
     //Timeout for Encoders
     public static final int kTimeoutms = 10;
 
-
+    //PIDTurn
+    public static final double kPIDTurn_P = 0.2;
+    public static final double kPIDTurn_I = 0;
+    public static final double kPIDTurn_D = 0;
+    public static final double kToleranceDegrees = 2.0;
 }
