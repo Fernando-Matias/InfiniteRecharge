@@ -88,6 +88,14 @@ public static DifferentialDrive mDrive;
     Constants.currentGear = Constants.lowGear;
   }
   
+  public double GetLeftEncoderValue() {
+    return mDriveLeftMaster.getSelectedSensorPosition(0);
+  }
+   
+  public double GetRightEncoderValue() {
+    return mDriveRightMaster.getSelectedSensorPosition(0);
+  }
+  
   public void setCoast() {
     mDriveLeftMaster.setNeutralMode(NeutralMode.Coast);
     mDriveLeftB.setNeutralMode(NeutralMode.Coast);
