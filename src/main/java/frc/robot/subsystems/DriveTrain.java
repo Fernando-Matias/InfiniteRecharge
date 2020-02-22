@@ -40,6 +40,7 @@ public class DriveTrain extends SubsystemBase {
   private static Solenoid mShifter_High, mShifter_Low;
 
   AHRS ahrs;
+  public PIDController PIDTurn;
 
   public static DriveTrain getInstance(){
     return instance;
@@ -90,9 +91,9 @@ public static DifferentialDrive mDrive;
   MathUtil.clamp(PIDTurn.calculate(mDriveLeftMaster.getSelectedSensorPosition()), -0.65, 0.65);
   MathUtil.clamp(PIDTurn.calculate(mDriveRightMaster.getSelectedSensorPosition()), -0.65, 0.65);
   PIDTurn.setTolerance(Constants.kToleranceDegrees);
+
   }
-
-
+  
 
 
 
@@ -146,6 +147,26 @@ public static DifferentialDrive mDrive;
     mDriveRightMaster.set(ControlMode.PercentOutput, 0.0);
   }
   
+  public void ResetNavX() {
+    ahrs.reset();
+  }
+
+  public void NavX0deg() {
+    PIDTurn.setSetpoint(0.0);
+  }
+
+  public void NavX90deg() {
+    PIDTurn.setSetpoint(90.0);
+  }
+
+  public void NavX180deg() {
+    PIDTurn.setSetpoint(179.9);
+  }
+
+  public void NavX270() {
+    PIDTurn.setSetpoint(-90.0);
+  }
+
   //turning algirithm
   public void Curvature(double ThrottleAxis, double TurnAxis) {
     TurnRateCurved = (Constants.kTurnrateCurve*Math.pow(TurnAxis,3)+(1-Constants.kTurnrateCurve)*TurnAxis*Constants.kTurnrateLimit);
