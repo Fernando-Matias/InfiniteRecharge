@@ -49,8 +49,8 @@ public final class Constants {
     public static final int cpmStateExtended = 1;
     public static int cpmState = cpmStateExtended;
 
-
-    
+    //Timeout for Encoders
+    public static final int kTimeoutms = 10;
 
 
 }
