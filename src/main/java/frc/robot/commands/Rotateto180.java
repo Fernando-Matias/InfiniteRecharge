@@ -15,7 +15,7 @@ public class Rotateto180 extends CommandBase {
    * Creates a new Rotateto180.
    */
 
-  DriveTrain driveTrain = DriveTrain.getInstance()
+  DriveTrain driveTrain = DriveTrain.getInstance();
   
   public Rotateto180() {
     // Use addRequirements() here to declare subsystem dependencies.

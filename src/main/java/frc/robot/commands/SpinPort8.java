@@ -8,28 +8,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.ControlPanelManipulator;
 
-public class Rotateto270 extends CommandBase {
+public class SpinPort8 extends CommandBase {
   /**
-   * Creates a new Rotateto270.
+   * Creates a new SpinPort8.
    */
+  ControlPanelManipulator controlPanelManipulator = ControlPanelManipulator.GetInstance();
 
-  DriveTrain driveTrain = DriveTrain.getInstance();
-
-  public Rotateto270() {
+  public SpinPort8() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    controlPanelManipulator.SpinControlPanel();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  driveTrain.NavX270();
+
   }
 
   // Called once the command ends or is interrupted.
