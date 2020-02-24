@@ -12,8 +12,9 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import frc.robot.OI;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,8 +29,7 @@ import frc.robot.subsystems.DriveTrain;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
- 
-  Joystick stick;
+  public AHRS ahrs;
 
   //private RobotContainer m_robotContainer;
 
@@ -43,6 +43,12 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
 
     //m_robotContainer = new RobotContainer();
+    OI OI = new OI();
+
+    OI.registerControls();
+
+
+
   }
 
   /**
@@ -59,6 +65,10 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("RawGyro_X", ahrs.getRawGyroX());
+    SmartDashboard.putNumber("RawGyro_Y", ahrs.getRawGyroY());
+    SmartDashboard.putNumber("RawGyro_Z", ahrs.getRawGyroZ());
+    
   }
 
   /**
@@ -108,6 +118,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+
   }
 
   @Override
