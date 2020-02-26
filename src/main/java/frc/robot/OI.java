@@ -22,8 +22,8 @@ public class OI {
       Gamepad.getButtonA().whenPressed(new SpinPort8());
       Gamepad.getButtonB().whenPressed(new Rotateto90());
       Gamepad.getButtonY().whenPressed(new Rotateto180());
-      Gamepad.getButtonX().whenPressed(new Rotateto270());
-      Gamepad.getButtonStart().whenPressed(new ResetGyro());
+      Gamepad.getButtonX().whenPressed(new ResetGyro());
+    //Gamepad.getButtonStart().whenPressed(new ResetGyro());
     }
 
     public static double getLeftThrottleInput() {

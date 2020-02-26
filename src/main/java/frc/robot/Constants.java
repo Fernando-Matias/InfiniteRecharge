@@ -49,6 +49,11 @@ public final class Constants {
     public static final int cpmStateExtended = 1;
     public static int cpmState = cpmStateExtended;
 
+    //Control pannel manipulator 
+    public static final int NavxResete = 0;
+    public static final int Navxold = 1;
+    public static int NavxState = Navxold;
+
     //Timeout for Encoders
     public static final int kTimeoutms = 10;
 

@@ -12,9 +12,12 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.SerialPort;
 
 import frc.robot.OI;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Limelight;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -31,6 +34,9 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public AHRS ahrs;
 
+  Limelight limelight = Limelight.getInstance();
+  DriveTrain driveTrain = DriveTrain.getInstance();
+
   //private RobotContainer m_robotContainer;
 
   /**
@@ -46,6 +52,8 @@ public class Robot extends TimedRobot {
     OI OI = new OI();
 
     OI.registerControls();
+    
+    
 
 
 
@@ -64,10 +72,11 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
+    
     CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("RawGyro_X", ahrs.getRawGyroX());
-    SmartDashboard.putNumber("RawGyro_Y", ahrs.getRawGyroY());
-    SmartDashboard.putNumber("RawGyro_Z", ahrs.getRawGyroZ());
+    limelight.LimelightOutput();
+    driveTrain.NavXOutput();
+    
     
   }
 
