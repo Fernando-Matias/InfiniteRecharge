@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
 public class ResetGyro extends CommandBase {
@@ -40,6 +41,13 @@ public class ResetGyro extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (Constants.NavxState == Constants.NavxResete) {
+      Constants.NavxState = Constants.Navxold;
+      return true;
+    }
+    else {
+      return false;
+    }
+    
   }
 }
