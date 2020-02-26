@@ -8,9 +8,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -24,6 +27,8 @@ public class ControlPanelManipulator extends SubsystemBase {
   public static ControlPanelManipulator GetInstance() {
     return instance;
   }
+
+  Timer timer = new Timer();
 
   public Solenoid CPManipulatorExtend, CPManipulatorRetract;
   public TalonSRX CPManipulatorMotor;
@@ -43,8 +48,15 @@ public class ControlPanelManipulator extends SubsystemBase {
   }
 
 //Manipulator Control
-  public void SpinControlPanel() {
-    CPManipulatorMotor.set(ControlMode.PercentOutput, 1.0);
+   public void SpinControlPanel() {
+
+    timer.start();
+    for (double i = 0; i <= 0.5; i = i + 0.1){
+      SmartDashboard.putNumber("ramping", i);
+      CPManipulatorMotor.set(ControlMode.PercentOutput, i);
+      Timer.delay(1);
+    }
+
   }
   public void StopSpinControlPanel() {
     CPManipulatorMotor.set(ControlMode.PercentOutput, 0.0);

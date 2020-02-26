@@ -16,6 +16,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
  public class Limelight extends SubsystemBase {
 
+  private static final Limelight instance = new Limelight();
+
+  public static Limelight getInstance() {
+    return instance;
+  }
+
   
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   NetworkTableEntry tx;

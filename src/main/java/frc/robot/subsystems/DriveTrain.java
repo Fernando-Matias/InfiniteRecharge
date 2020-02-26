@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpiutil.math.MathUtil;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.*;
 
@@ -91,7 +92,7 @@ public static DifferentialDrive mDrive;
   MathUtil.clamp(PIDTurn.calculate(mDriveLeftMaster.getSelectedSensorPosition()), -0.65, 0.65);
   MathUtil.clamp(PIDTurn.calculate(mDriveRightMaster.getSelectedSensorPosition()), -0.65, 0.65);
   PIDTurn.setTolerance(Constants.kToleranceDegrees);
-
+  
   }
   
 
@@ -149,7 +150,14 @@ public static DifferentialDrive mDrive;
   
   public void ResetNavX() {
     ahrs.reset();
+    Constants.NavxState = Constants.NavxResete;
+
   }
+
+  public double getYaw() {
+    return ahrs.getYaw();
+  }
+
 
   public void NavX0deg() {
     PIDTurn.setSetpoint(0.0);
@@ -165,6 +173,10 @@ public static DifferentialDrive mDrive;
 
   public void NavX270() {
     PIDTurn.setSetpoint(-90.0);
+  }
+
+  public void NavXOutput() {
+    SmartDashboard.putNumber("getYaw", ahrs.getYaw() );
   }
 
   //turning algirithm
